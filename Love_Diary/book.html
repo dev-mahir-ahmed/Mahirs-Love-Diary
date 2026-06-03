@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message by Mahir</title>
+     <style>
+      * {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background-image: radial-gradient(
+      circle farthest-corner at 50% 50%,
+      hsl(187 20% 88%) 30%,
+      hsl(149 20% 94%) 100%
+  );
+}
+
+.book {
+  position: relative;
+  display: flex;
+  margin: auto;
+  width: 42cqmin; 
+  pointer-events: none;
+  transform-style: preserve-3d;
+  transition: translate 1s;
+  translate: calc(min(var(--c), 1) * 50%) 0%;
+  rotate: 1 0 0 30deg;
+}
+
+.page {
+  --thickness: 4;
+  flex: none;
+  display: flex;
+  width: 100%;
+  font-size: 2.2cqmin; 
+  pointer-events: all;
+  user-select: none;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 1s,
+      rotate 1s ease-in calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms);
+  translate: calc(var(--i) * -100%) 0px 0px;
+  transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 0.23cqmin)));
+  rotate: 0 1 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
+}
+
+.front,
+.back {
+  position: relative;
+  flex: none;
+  width: 100%;
+  backface-visibility: hidden;
+  overflow: hidden;
+  background-color: #fff;
+  translate: 0px;
+}
+
+.back {
+  translate: -100% 0;
+  rotate: 0 1 0 180deg;
+}
+
+.book {
+  counter-reset: page -1;
+}
+
+.book a {
+  color: inherit;
+}
+
+.page {
+  box-shadow: 0em 0.5em 1em -0.2em #00000020;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  padding: 2em;
+  border: 1px solid #0002;
+}
+
+.front:has(img),
+.back:has(img) {
+  padding: 0;
+}
+
+.front img,
+.back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.front::after,
+.back::after {
+  position: absolute;
+  bottom: 1em;
+  counter-increment: page;
+  content: counter(page) ".";
+  font-size: 0.8em;
+}
+
+.cover::after {
+  content: "";
+}
+
+.front::after {
+  right: 1em;
+}
+
+.front {
+  background: linear-gradient(to left, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.1em 0.5em 0.5em 0.1em;
+}
+
+.back::after {
+  left: 1em;
+}
+
+.back {
+  background-image: linear-gradient(to right, #f7f7f7 80%, #eee 100%);
+  border-radius: 0.5em 0.1em 0.1em 0.5em;
+}
+
+.cover {
+  background: radial-gradient(
+          circle farthest-corner at 80% 20%,
+          hsl(150 80% 20% / 0.3) 0%,
+          hsl(170 60% 10% / 0.1) 100%
+      ),
+      hsl(231, 32%, 29%) url("Images/Diary_Cover.jpg") 50% / cover;
+  color: hsl(0, 100%, 30%); 
+}
+
+h1,
+h2,
+h3 {
+  margin-bottom: 1px;
+  color: hsl(0, 100%, 30%); 
+}
+
+p {
+  margin-top: 1px;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  color: hsl(0, 100%, 30%); 
+}
+
+.front,
+.back {
+  padding: 1.5em;
+  color: hsl(0, 100%, 30%); 
+}
+
+.book {
+  width: 40cqmin; 
+}
+
+.page {
+  font-size: 2cqmin; 
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+.front,
+.back {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1.5em;
+}
+
+h2 {
+  margin-bottom: 5px;
+}
+
+p {
+  margin-top: 5px;
+  line-height: 1.4;
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  min-height: 100dvh;
+  perspective: 1000px;
+  font: 1em/1.4 "Poppins", sans-serif;
+  overflow: hidden;
+  color: hsl(180 68% 5%);
+  background: linear-gradient(to right, #ff7eb9, #ff65a3, #ff165d);
+  background-size: 400% 400%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Emoji Animation */
+.emoji {
+  position: absolute;
+  font-size: 3rem;
+  opacity: 0;
+  animation: floatEmojis 6s ease-in-out infinite;
+}
+
+@keyframes floatEmojis {
+  0% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-100px) rotate(20deg);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(100px);
+    opacity: 1;
+  }
+}
+
+/* Add random timing for each emoji */
+.emoji:nth-child(1) {
+  animation-delay: 0s;
+  left: 10%;
+}
+.emoji:nth-child(2) {
+  animation-delay: 1s;
+  left: 20%;
+}
+.emoji:nth-child(3) {
+  animation-delay: 2s;
+  left: 30%;
+}
+.emoji:nth-child(4) {
+  animation-delay: 3s;
+  left: 40%;
+}
+.emoji:nth-child(5) {
+  animation-delay: 4s;
+  left: 50%;
+}
+.emoji:nth-child(6) {
+  animation-delay: 5s;
+  left: 60%;
+}
+.emoji:nth-child(7) {
+  animation-delay: 6s;
+  left: 70%;
+}
+.emoji:nth-child(8) {
+  animation-delay: 7s;
+  left: 80%;
+}
+.emoji:nth-child(9) {
+  animation-delay: 8s;
+  left: 90%;
+}
+
+
+     </style>
+  </head>
+  <body>
+    <div class="book">
+      <div class="page">
+        <div class="front cover">
+          <h1
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            A Message for You🤍
+          </h1>
+
+          <p
+            style="
+              color: rgb(255, 255, 255);
+              text-shadow: 5px 2px 5px rgb(0, 0, 0);
+            "
+          >
+            <br />From Mahir Ahmed
+          </p>
+        </div>
+        <div class="back">
+  <h2>A Special Beginning ❤️✨</h2>
+
+  <p>
+    Every love story begins with a simple moment. Sometimes it starts with a smile,
+    sometimes with a conversation, and sometimes with a feeling that cannot be explained in words.
+    Love has a quiet way of entering the heart and slowly becoming something unforgettable. 💖
+  </p>
+</div>
+</div>
+
+<!--2nd page-->
+<div class="page">
+  <div class="front">
+    <h2>From Strangers to Something Special ❤️✨</h2>
+    <p>
+      Sometimes life connects two people in the most unexpected way.
+      At first, everything feels unknown and uncertain, but slowly comfort begins to grow.
+
+      Conversations that once felt simple start to mean something deeper.
+      A connection forms that cannot easily be explained, only felt.
+
+      And before you realize it, someone who was once a stranger starts becoming a special part of your thoughts. 💖
+    </p>
+  </div>
+
+  <div class="back">
+    <img src="Images/First_Page_Photo.png" alt="Img 1" />
+  </div>
+</div>
+
+<!--3rd page-->
+<div class="page">
+  <div class="front">
+    <h2>The Magic of You ✨💖</h2>
+    <p>
+      There is something truly magical about certain people.
+
+      Not just how they look, but how they make everything around them feel brighter.
+      Their presence feels warm, calming, and unforgettable.
+
+      Every small detail about them feels special in its own way.
+
+      It feels like they were created with extra care, just to bring a little more light into the world. 💕
+    </p>
+  </div>
+
+  <div class="back">
+    <h2>The Strength Within You 💫✨</h2>
+    <p>
+      True beauty is not only about appearance—it is about strength, kindness, and character.
+
+      Some people carry a quiet strength that inspires others without even trying.
+      They face life with courage, patience, and a beautiful heart.
+
+      Their presence becomes a reminder that real beauty always comes from within. 💖✨
+    </p>
+  </div>
+</div>
+
+<!--4th page-->
+<div class="page">
+  <div class="front">
+    <h2>The Best Part of My Day 🤞💖</h2>
+    <p>
+      Some moments in life feel small, but they bring the biggest happiness.
+
+      A simple message, a simple conversation, or even a single thought can change the entire mood of a day.
+
+      There is a special kind of joy in talking to someone who makes everything feel lighter, calmer, and more meaningful.
+
+      Those moments slowly become the best part of everyday life. 💕
+    </p>
+  </div>
+
+  <div class="back">
+    <img src="Images/Middle_Page_Photo.png" alt="Img 2" />
+  </div>
+</div>
+
+<!--5th page-->
+<div class="page">
+  <div class="front">
+    <h1>A Wish from the Heart 💫💖</h1>
+    <p>
+      Sometimes the heart creates wishes that cannot be spoken out loud.
+
+      Wishes to be closer, to understand more, to share more moments, and to hold onto the feeling of connection.
+
+      Even when life is imperfect, the heart continues to hope for warmth, care, and emotional closeness.
+
+      And in those silent wishes, love quietly grows stronger. 💖
+    </p>
+  </div>
+
+  <div class="back">
+    <h1>Always Here for You 💖✨</h1>
+    <p>
+      Real connection is about being there—through happiness, sadness, and everything in between.
+
+      Someone who truly cares never leaves in difficult moments.
+      They stay, they listen, and they support without conditions.
+
+      That kind of presence becomes a quiet strength in life,
+      a reminder that you are never truly alone. 💕
+    </p>
+  </div>
+</div>
+
+<!--6th page-->
+<div class="page">
+  <div class="front">
+    <h2>The Beauty of You ✨💖</h2>
+    <p>
+      Beauty is not only seen—it is felt.
+
+      It is in the way someone smiles, the way they speak, and the way they treat others with kindness.
+
+      Some people naturally leave a lasting impression wherever they go.
+
+      Not just because of how they look, but because of the energy they carry within them. 💖✨
+    </p>
+  </div>
+
+  <div class="back">
+    <h2>Absolutely Breathtaking ✨💖</h2>
+    <p>
+      Some people have a presence that is impossible to ignore.
+
+      They don’t need to try hard to stand out—it happens naturally.
+
+      Their confidence, charm, and personality make them unforgettable in every way.
+
+      They don’t just enter a space—they change its entire atmosphere. 💕✨
+    </p>
+  </div>
+</div>
+
+<!--7th page-->
+<div class="page">
+  <div class="front">
+    <h2>Grateful for You 🌹❤</h2>
+    <p>
+      Gratitude is one of the most powerful emotions.
+
+      Being thankful for someone means appreciating the moments, the conversations, and the emotional connection shared.
+
+      Some people come into life and quietly become important without even realizing it.
+
+      And that presence alone becomes something to always be grateful for. 💕
+    </p>
+  </div>
+
+  <div class="back">
+    <h2>Expect From You ❤️✨</h2>
+    <p>
+      Every meaningful connection is built on hope, trust, and understanding.
+
+      We naturally wish for consistency, care, and emotional support from those who matter to us.
+
+      And sometimes, we simply hope that the bond continues to grow stronger with time.
+
+      Because some connections feel too special to let go of. 🥺💖
+    </p>
+
+    <h5>
+      I Love You ❤️<br>
+      Endless feelings, endless care ❤️
+    </h5>
+  </div>
+</div>
+
+      <div class="page">
+        <div class="front">
+          <img src="Images/Last_Page_Photo.jpg" alt="Img 3" />
+        </div>
+        <div class="back cover">
+          <h3 style="color: white;"> Love Diary </h3>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="emoji">❤️‍🔥</div>
+<div class="emoji">🫶🏻</div>
+<div class="emoji">❤️</div>
+<div class="emoji">😘</div>
+<div class="emoji">👨‍❤️‍💋‍👨</div>
+<div class="emoji">💓</div>
+<div class="emoji">❣️</div>
+<div class="emoji">💘</div>
+<div class="emoji">💖</div>
+<div class="emoji">💙</div>
+<div class="emoji">💚</div>
+<div class="emoji">🥰</div>
+<div class="emoji">💗</div>
+
+<script>
+  const flipBook = (elBook) => {
+    elBook.style.setProperty("--c", 0); 
+    elBook.querySelectorAll(".page").forEach((page, idx) => {
+      page.style.setProperty("--i", idx);
+      page.addEventListener("click", (evt) => {
+        if (evt.target.closest("a")) return;
+        const curr = evt.target.closest(".back") ? idx : idx + 1;
+        elBook.style.setProperty("--c", curr);
+      });
+    });
+  };
+  
+  document.querySelectorAll(".book").forEach(flipBook);
+  
+</script>
+  </body>
+</html>
+
